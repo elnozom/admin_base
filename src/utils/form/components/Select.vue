@@ -14,7 +14,7 @@
     :label="$t(input.label)"
     outlined
     single-line
-    :value="initial"
+    :value="value"
 
   ></v-select>
 </template>
@@ -22,6 +22,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Api from '@/utils/axios/Api';
+import { bus } from "@/main";
 const Http = Api.getInstance();
 export default Vue.extend({
   data(){
@@ -29,7 +30,7 @@ export default Vue.extend({
       loading:true,
     }
   },  
-  props:['input' , 'initial'],
+  props:['input' , 'value'],
   methods:{
       change(val:any){
         const value = typeof val == 'undefined'? null :val

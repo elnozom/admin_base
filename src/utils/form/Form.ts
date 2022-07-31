@@ -1,5 +1,5 @@
 import i18n from '@/i18n';
-import { FormInterface, InputInterface } from './interface';
+import { FormInterface } from './interface';
 import Input from './inputs/Input';
 
 
@@ -38,7 +38,7 @@ export default class Form implements FormInterface {
         return true
     }
 
-    public submitAction() {
+    public submitAction(ref:any) {
         this.loading = true
         if (!this.validate()) {
             this.error = i18n.t('required_validation_error').toString()
@@ -46,13 +46,13 @@ export default class Form implements FormInterface {
             return
         }
         this.submit!(this.state).then(res => {
-            this._reset()
+            this._reset(ref)
             this.valid = true
             if (this.callBack) {
                 this.callBack(res)
             }
         }).catch((e => {
-            this._reset()
+            this._reset(null)
             this.error = e
             this.error = i18n.t((e.response.data)).toString()
             if( typeof e.response !== 'undefined' || e.response.status === 400){
@@ -77,8 +77,9 @@ export default class Form implements FormInterface {
     }
 
 
-    private _reset() {
+    private _reset(ref:any) {
         // this._initInputs()
         this.loading = false
+        if (ref) ref.reset()
     }
 }

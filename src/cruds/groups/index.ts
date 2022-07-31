@@ -1,10 +1,15 @@
-import categoryForm from '@/forms/category/';
+import { bus } from './../../main';
+import categoryForm from '@/forms/groups';
 import EditAdd from '@/utils/crud/editAdd';
 import EditAddInterface from '@/utils/crud/editAddInterface';
+const callBack = (form:any) => {
+    bus.$emit("getGroupsTree")
+}
 const editAddInterface :EditAddInterface = {
     title : "groups",
     table : "groups",
-    form :  categoryForm
+    form :  categoryForm,
+    callBack
 }
 const editAddCategory = new EditAdd(editAddInterface)
 export default editAddCategory

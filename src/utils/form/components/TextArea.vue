@@ -4,7 +4,7 @@
       :prepend-icon="input.icon"
       :append-icon="input.required ? 'mdi-asterisk' : ''"
       :rules="input.rules ? input.rules : []"
-      :value="initial"
+      :value="value"
       :hint="input.hint"
       outlined
       @input="change"
@@ -16,14 +16,10 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props:['input' , 'initial'],
+  props:['input' , 'value'],
   methods:{
     change(val:any){
       this.input.val = val
-
-      // if (this.type == 'number') {
-      //   val = parseInt(val)
-      // }
       if(this.input.isNumber) {
         val = parseFloat(val)
       }

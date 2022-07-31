@@ -1,14 +1,16 @@
 <template>
     <v-text-field
       :label="$t(input.label)"
+      :id="`form-input-${input.name}`"
+      ref="input"
       :disabled="input.disabled"
       :type="input.type"
       :prepend-icon="input.icon"
       :clearable="!input.required"
       :append-icon="input.required ? 'mdi-asterisk' : ''"
       :rules="input.rules ? input.rules : []"
-      :value="initial"
       :hint="input.hint"
+      :value="value"
       outlined
       @input="change"
     ></v-text-field>
@@ -19,7 +21,13 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props:['input' , 'initial'],
+  props:['input' ,  'value'],
+  watch:{
+    "input.value" :(val) => {
+      console.log("val")
+      console.log(val)
+    }
+  },  
   methods:{
     change(val:any){
       this.input.val = val

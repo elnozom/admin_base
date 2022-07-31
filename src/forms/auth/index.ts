@@ -6,14 +6,13 @@ import Form from '@/utils/form/Form';
 import router from '@/router'
 
 import {
-    convertToRequred,
     usernameInput,
     passwordInput
 } from '@/utils/form/inputs/InputStore'
 
 const inputs: Input[] = [
-    new Input(convertToRequred(usernameInput)),
-    new Input(convertToRequred(passwordInput))
+    new Input(usernameInput),
+    new Input(passwordInput)
 ]
 
 const submit = (form: any): Promise<any> => {

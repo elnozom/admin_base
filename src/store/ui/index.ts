@@ -7,6 +7,11 @@ import { RootState } from '../types';
 
 export const state: UiState = {
     loading: true,
+    snackBar:{
+        Active : false,
+        Title : "",
+        Msg : "",
+    },
     respondModal: false,
     respondModalUserId: 0
 };

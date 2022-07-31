@@ -39,45 +39,22 @@ const routes: Array<RouteConfig> = [
       {
         path: "/items/groups",
         name: "items-groups",
-        component: () => import('@/views/items/group.vue'),
+        component: () => import('@/views/items/group-base.vue'),
+        children:[
+          {
+            path: "/items/groups",
+            name: "items-groups",
+            component: () => import('@/views/items/group-ediit-add.vue'),
+          },
+          {
+            path: "/items/groups/:id",
+            name: "items-groups-edit",
+            component: () => import('@/views/items/group-ediit-add.vue'),
+          },
+        ]
       },
-      {
-        path: "/items/groups/:id",
-        name: "items-groups-edit",
-        component: () => import('@/views/items/group.vue'),
-      },
-      // {
-      //   path: "/items/",
-      //   name: "items",
-      //   children: [
-      //     {
-      //       path: "/",
-      //       name: "items-list",
-      //       component: () => import('@/views/items/index.vue'),
-      //     },
-      //     {
-      //       path: "create",
-      //       name: "items-create",
-      //       component: () => import('@/views/items/create.vue'),
-      //     },
-      //     {
-      //       path: "edit/:id",
-      //       name: "items-edit",
-      //       component: () => import('@/views/items/edit.vue'),
-      //     },
-      //     {
-      //       path: "view/:id",
-      //       name: "items-view",
-      //       component: () => import('@/views/items/view.vue'),
-      //     },
-      //     {
-      //       path: "groups",
-      //       name: "items-groups",
-      //       component: () => import('@/views/items/group.vue'),
-      //     },
-      //   ]
-      // },
-
+      
+      
     ]
   },
   {

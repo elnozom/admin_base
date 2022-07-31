@@ -7,25 +7,22 @@ import {  required } from "@/utils/validations/validations"
 
 
 export const imgInput: TextInputInterface = {
-    name: "Image",
-    icon: "",
+    name: "imagePath",
     generateInputHtml: () => Vue.extend(FileInputComponent),
     rules: [],
     label: "Img",
     isImg: true,
-    cols: 12,
+    cols: 6,
     type: 'file',
     value: ""
 }
 
 
 export const nameInput: TextInputInterface = {
-    name: "name",
-    icon: "",
+    name: "groupName",
     generateInputHtml: () => Vue.extend(TextInputComponent),
     rules: [
         (value: string) => required(value),
-        // (value:string) => email(value) ,
     ],
     label: "name",
     cols: 6,
@@ -35,8 +32,7 @@ export const nameInput: TextInputInterface = {
 
 
 export const nameEnInput: TextInputInterface = {
-    name: "name_en",
-    icon: "",
+    name: "groupNameEn",
     generateInputHtml: () => Vue.extend(TextInputComponent),
     rules: [
         (value: string) => required(value),
@@ -48,30 +44,19 @@ export const nameEnInput: TextInputInterface = {
 }
 
 
-export const code: TextInputInterface = {
-    name: "code",
-    icon: "",
-    generateInputHtml: () => Vue.extend(TextInputComponent),
-    label: "code",
-    cols: 6,
-    type: 'text',
-    value: ""
-}
-
 
 
 
 export const paretnGroupInput:SelectInputInterface =  {
-    name:"parent",
+    name:"parentCode",
     cache : false,
-    text : 'parent_name',
+    text : 'name',
     cols:6,
     initialFetch:true,
     generateInputHtml : () =>   Vue.extend(ComboInputComponent),
     clearable:true,
-    valueKey : 'parent_code',
+    valueKey : 'code',
     type : 'combo',
-    url:'groups',
-    icon : 'mdi-parent-settings-outline',
+    url:'groups/list',
     label : 'parent'
   }

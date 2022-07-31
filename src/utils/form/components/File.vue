@@ -45,6 +45,9 @@ export default Vue.extend({
       });
     },
     upload(){
+      if(this.file == null){
+        return
+      }
        let formData = new FormData();
         formData.append("file", this.file as Blob);
         Upload(formData).then((d) => {

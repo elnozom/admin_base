@@ -24,6 +24,7 @@
 import Vue from "vue";
 import Api from '@/utils/axios/Api';
 import { serializeQuery } from "@/utils/helpers";
+import { bus } from "@/main";
 const Http = Api.getInstance();
 export default Vue.extend({
   data(){
@@ -34,6 +35,7 @@ export default Vue.extend({
   },
   props: {
     input: Object,
+
   },
   methods:{
       change(val:any){
@@ -46,16 +48,22 @@ export default Vue.extend({
         .then((d) => {
           this.loading = false
           this.input.items = d
-          let m = this.input.items.filter((item:any)=>{
-            console.log(item[`${this.input.valueKey}`])
-            return item[`${this.input.valueKey}`] == this.input.value
+          this.setModel(this.input.value)
+        })
+      },
+      setModel(value : any){
+        let m = this.input.items.filter((item:any)=>{
+            return item[`${this.input.valueKey}`] == value
           })[0]
          this.model = m
-        })
       }
   },
   created(){
     if (this.input.initialFetch) this.getData()
+    bus.$on("changeStateAppForm", (state:any) => {
+        this.setModel(state[this.input.name])
+    });
   }
+  
 });
 </script>

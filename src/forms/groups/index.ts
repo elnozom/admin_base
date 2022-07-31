@@ -5,14 +5,12 @@ import {
     imgInput,
     nameInput,
     nameEnInput,
-    code,
     paretnGroupInput,
 } from './inputs'
 
 const inputs:Input[] = [
     new Input(nameInput),
     new Input(nameEnInput),
-    new Input(code),
     new Input(paretnGroupInput),
     new Input(imgInput),
 ]

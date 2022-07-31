@@ -5,4 +5,5 @@ export default interface EditAddInterface {
     table:string
     form:Form
     id?:number
+    callBack?: (response: any) => any
 }

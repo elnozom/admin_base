@@ -8,7 +8,7 @@ export type TextInputInterface = {
     hint?:string
     disabled?:boolean
     hidden?:boolean
-    icon: string
+    icon?: string
     cols: number
     type:string
     generateInputHtml:() => VueConstructor<Vue>
@@ -67,7 +67,7 @@ export type SelectInputInterface = {
     initial?:any,
     cols?:number
     items?: Object[]
-    icon: string
+    icon?: string
     label: string
     url?:string
     change?:Function

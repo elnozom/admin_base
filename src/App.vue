@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <msg-modal/>
+     <snack />
     <loading v-if="loading"/>
     <router-view :key="$route.fullpath">
     </router-view>
@@ -10,15 +10,15 @@
 <script lang="ts">
 import Vue from "vue";
 import Loading from "@/components/layouts/Loading.vue";
-import MsgModal from "@/components/modals/Msg.vue";
 import {mapGetters} from 'vuex'
 import { switchLanguage } from "@/utils/helpers";
+import Snack from '@/components/utils/snack.vue'
 
 export default Vue.extend({
   name: "App",
   components: {
     Loading,
-    MsgModal,
+    Snack,
   },
   computed:{
      ...mapGetters({

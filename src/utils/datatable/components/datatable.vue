@@ -61,16 +61,7 @@
                             >{{ $t("create") }}</v-list-item-title
                           >
                         </v-list-item>
-                        <v-list-item
-                          @click.prevent="downloadExcel"
-                          v-if="table.title == 'users'"
-                        >
-                          <v-list-item-title
-                            ><v-icon class="mr-3 ml-3"
-                              >mdi-download-outline</v-icon
-                            >{{ $t("excel") }}</v-list-item-title
-                          >
-                        </v-list-item>
+                        
                       </v-list>
                     </v-menu>
                    
@@ -252,7 +243,6 @@ import {
 import AppForm from "@/utils/form/components/Form.vue";
 import Vue from "vue";
 import { HeaderInterface } from "../header/headerInterface";
-import { UsersExcel } from "@/repositories/user";
 export default Vue.extend({
   props: {
     table: Datatable,
@@ -305,19 +295,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    downloadExcel() {
-      UsersExcel().then((r: any) => {
-        let source = `${process.env.VUE_APP_IMG_URL}${r}`;
-        console.log(source);
-        console.log(r);
-        var el = document.createElement("a");
-        el.setAttribute("href", source);
-        el.setAttribute("target", "_blank");
-        document.body.appendChild(el);
-        el.click();
-        el.remove();
-      });
-    },
+   
     advancedSearch(event: any, key: string) {},
     currency: (x: number) => currency(x),
     filter() {

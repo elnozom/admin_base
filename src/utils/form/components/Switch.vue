@@ -1,7 +1,7 @@
 
 <template>
 
-<v-switch @change="change" :input-value="initial" :label="$t(input.label)"/>
+<v-switch @change="change" :input-value="value" :label="$t(input.label)"/>
 </template>
 
 <script lang="ts">
@@ -9,7 +9,7 @@ import Vue from "vue";
 export default Vue.extend({
   props: {
     input: Object,
-    initial : Boolean,
+    value : Boolean,
   },
 
   methods:{
