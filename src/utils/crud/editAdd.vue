@@ -22,6 +22,11 @@ export default {
  },
  methods:{
     async submit(){
+      const isFormValid = await this.d.form.validate()
+      if(!isFormValid){
+        return
+      }
+
        this.d.submit().then(res => {
          if(this.d.callBack != null){
            this.d.callBack(this.d.form.state)

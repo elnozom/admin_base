@@ -63,6 +63,10 @@ export default Vue.extend({
     bus.$on("changeStateAppForm", (state:any) => {
         this.setModel(state[this.input.name])
     });
+    bus.$on("getGroupsTree", (state:any) => {
+        this.getData()
+    });
+    
   }
   
 });

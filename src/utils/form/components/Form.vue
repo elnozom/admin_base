@@ -84,14 +84,27 @@ export default Vue.extend({
     bus.$on("resetAppForm", () => {
       const ref = this.$refs.appForm as any;
       if(typeof ref != 'undefined') {
+        this.form.state = {}
         ref.reset();
       }
     });
     bus.$on("changeStateAppForm", () => {
       this.loading = true;
         this.loading = false;
-      
     });
+    bus.$on("validateAppForm", () => {
+     const ref = this.$refs.appForm as any;
+      if(typeof ref != 'undefined') {
+        ref.validate();
+      }
+    });
+    bus.$on("resetValidationAppForm", () => {
+     const ref = this.$refs.appForm as any;
+      if(typeof ref != 'undefined') {
+        ref.resetValidation();
+      }
+    });
+    
   },
 });
 </script>

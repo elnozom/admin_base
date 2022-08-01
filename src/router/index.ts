@@ -43,13 +43,13 @@ const routes: Array<RouteConfig> = [
         children:[
           {
             path: "/items/groups",
-            name: "items-groups",
-            component: () => import('@/views/items/group-ediit-add.vue'),
+            name: "items-groups-create",
+            component: () => import('@/views/items/group-edit-add.vue'),
           },
           {
             path: "/items/groups/:id",
             name: "items-groups-edit",
-            component: () => import('@/views/items/group-ediit-add.vue'),
+            component: () => import('@/views/items/group-edit-add.vue'),
           },
         ]
       },

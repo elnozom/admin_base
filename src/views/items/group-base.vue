@@ -43,6 +43,7 @@
 import { bus } from "@/main";
 import { groupsHierarchyResponse } from "@/models/group";
 import { ListHierarchy } from "@/repositories/group";
+
 export default {
   data() {
     return {
@@ -78,6 +79,7 @@ export default {
   methods: {
     getData() {
       ListHierarchy().then((res: groupsHierarchyResponse[]) => {
+        if(res.length == 0 && this.$route.name == 'items-groups-edit') this.$router.push('items-groups')
         this.groups = res;
       });
     },

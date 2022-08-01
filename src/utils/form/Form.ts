@@ -1,6 +1,7 @@
 import i18n from '@/i18n';
 import { FormInterface } from './interface';
 import Input from './inputs/Input';
+import { bus } from "@/main";
 
 
 export default class Form implements FormInterface {
@@ -25,12 +26,15 @@ export default class Form implements FormInterface {
     }
 
     public validate(): boolean {
+        bus.$emit('validateAppForm')
         if (this.hasValidation == false) {
             return true
         }
         for (let index = 0; index < this.inputs.length; index++) {
             const input = this.inputs[index];
-            if (input.field.required == true && (input.field.value == null || typeof input.field.value == 'undefined')) {
+            const state = this.state as any
+            const inputVal = state[input.field.name]
+            if (input.field.required == true && (inputVal == null ||inputVal == '' || typeof inputVal == 'undefined')) {
                 return false
             }
 
@@ -38,7 +42,7 @@ export default class Form implements FormInterface {
         return true
     }
 
-    public submitAction(ref:any) {
+    public submitAction(ref: any) {
         this.loading = true
         if (!this.validate()) {
             this.error = i18n.t('required_validation_error').toString()
@@ -55,10 +59,10 @@ export default class Form implements FormInterface {
             this._reset(null)
             this.error = e
             this.error = i18n.t((e.response.data)).toString()
-            if( typeof e.response !== 'undefined' || e.response.status === 400){
+            if (typeof e.response !== 'undefined' || e.response.status === 400) {
                 this.valid = false
             }
-    
+
         }))
     }
 
@@ -71,13 +75,13 @@ export default class Form implements FormInterface {
                 this.valid = false
                 this.hasValidation = true
             }
-            state[input.field.name] = typeof input.field.initial == 'undefined' ? '' :  input.field.initial
+            state[input.field.name] = typeof input.field.initial == 'undefined' ? '' : input.field.initial
         })
         this.state = state
     }
 
 
-    private _reset(ref:any) {
+    private _reset(ref: any) {
         // this._initInputs()
         this.loading = false
         if (ref) ref.reset()

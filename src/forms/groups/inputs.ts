@@ -9,9 +9,7 @@ import {  required } from "@/utils/validations/validations"
 export const imgInput: TextInputInterface = {
     name: "imagePath",
     generateInputHtml: () => Vue.extend(FileInputComponent),
-    rules: [],
     label: "Img",
-    isImg: true,
     cols: 6,
     type: 'file',
     value: ""
@@ -24,9 +22,11 @@ export const nameInput: TextInputInterface = {
     rules: [
         (value: string) => required(value),
     ],
+    
     label: "name",
     cols: 6,
     type: 'text',
+    required:true,
     value: ""
 }
 
@@ -39,6 +39,7 @@ export const nameEnInput: TextInputInterface = {
     ],
     label: "name_en",
     cols: 6,
+    required:true,
     type: 'text',
     value: ""
 }
