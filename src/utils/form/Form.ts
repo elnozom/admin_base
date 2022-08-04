@@ -42,9 +42,9 @@ export default class Form implements FormInterface {
         return true
     }
 
-    public submitAction(ref: any) {
+    public async submitAction(ref: any) {
         this.loading = true
-        if (!this.validate()) {
+        if ( await !this.validate()) {
             this.error = i18n.t('required_validation_error').toString()
             this.loading = false
             return
@@ -62,7 +62,6 @@ export default class Form implements FormInterface {
             if (typeof e.response !== 'undefined' || e.response.status === 400) {
                 this.valid = false
             }
-
         }))
     }
 

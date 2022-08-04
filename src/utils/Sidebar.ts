@@ -6,7 +6,7 @@ export default [
       {
         icon: "mdi-home-edit-outline",
         title: "sidebar.groups",
-        to: `items-groups`,
+        to: `items-groups-create`,
       },
     ]
   },
